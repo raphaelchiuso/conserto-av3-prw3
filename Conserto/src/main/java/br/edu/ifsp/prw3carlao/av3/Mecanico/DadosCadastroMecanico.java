@@ -1,4 +1,11 @@
 package br.edu.ifsp.prw3carlao.av3.Mecanico;
 
-public record DadosCadastroMecanico(String nome, int anosExperiencia) {
+import jakarta.validation.constraints.NotBlank;
+
+public record DadosCadastroMecanico(
+        @NotBlank
+        String nome,
+
+        @NotBlank
+        int anosExperiencia) {
 }
