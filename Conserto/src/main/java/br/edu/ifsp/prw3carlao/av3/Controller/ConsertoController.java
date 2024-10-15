@@ -2,6 +2,7 @@ package br.edu.ifsp.prw3carlao.av3.Controller;
 
 import br.edu.ifsp.prw3carlao.av3.Conserto.Conserto;
 import br.edu.ifsp.prw3carlao.av3.Conserto.ConsertoRepository;
+import br.edu.ifsp.prw3carlao.av3.Conserto.DadosCadastroConserto;
 import br.edu.ifsp.prw3carlao.av3.Conserto.DadosListagemConserto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,8 +22,8 @@ public class ConsertoController {
 
     @PostMapping
     @Transactional
-    public Conserto cadastrar(@RequestBody @Valid Conserto conserto) {
-        return consertoRepository.save(conserto);
+    public Conserto cadastrar(@RequestBody @Valid DadosCadastroConserto dadosCadastroConserto) {
+        return consertoRepository.save(new Conserto(dadosCadastroConserto));
     }
 
     @GetMapping
