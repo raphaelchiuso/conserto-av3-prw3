@@ -1,6 +1,5 @@
 package br.edu.ifsp.prw3carlao.av3.Veiculo;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public record DadosCadastroVeiculo(
