@@ -1,1 +1,0 @@
-ALTER TABLE veiculos ADD cor VARCHAR(255);
