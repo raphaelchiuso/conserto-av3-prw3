@@ -1,6 +1,6 @@
 package br.edu.ifsp.prw3carlao.av3.Conserto;
 
-import br.edu.ifsp.prw3carlao.av3.Mecanico.DadosCadastroMecanico;
+import br.edu.ifsp.prw3carlao.av3.Mecanico.DadosMecanico;
 import br.edu.ifsp.prw3carlao.av3.Veiculo.DadosCadastroVeiculo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -22,5 +22,5 @@ public record DadosCadastroConserto(
 
         @Valid
         @NotNull
-        DadosCadastroMecanico mecanico) {
+        DadosMecanico mecanico) {
 }

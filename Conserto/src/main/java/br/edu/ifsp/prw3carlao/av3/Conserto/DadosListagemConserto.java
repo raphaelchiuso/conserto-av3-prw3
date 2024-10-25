@@ -1,6 +1,7 @@
 package br.edu.ifsp.prw3carlao.av3.Conserto;
 
 public record DadosListagemConserto(
+        Long id,
         String dataEntrada,
         String dataSaida,
         String mecanicoNome,
@@ -9,6 +10,7 @@ public record DadosListagemConserto(
 
     public DadosListagemConserto(Conserto conserto) {
         this(
+                conserto.getId(),
                 conserto.getDataEntrada(),
                 conserto.getDataSaida(),
                 conserto.getMecanico().getNome(),
