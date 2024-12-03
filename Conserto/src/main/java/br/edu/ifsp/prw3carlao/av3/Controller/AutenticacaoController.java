@@ -1,6 +1,8 @@
 package br.edu.ifsp.prw3carlao.av3.Controller;
 
+import br.edu.ifsp.prw3carlao.av3.Usuario.Usuario;
 import br.edu.ifsp.prw3carlao.av3.Usuario.dadosAutenticacao;
+import br.edu.ifsp.prw3carlao.av3.Util.Security.PW3TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutenticacaoController {
 
     @Autowired
-    private AuthenticationManager manager; // Objeto AuthenticationManager,
-    // que será injetado aqui:
+    private AuthenticationManager manager;
+
+    @Autowired
+    private PW3TokenService tokenService;
+
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid dadosAutenticacao dados) {
         var token = new UsernamePasswordAuthenticationToken( dados.login(), dados.senha() );
         var authentication = manager.authenticate(token);
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .ok( tokenService.gerarToken( (Usuario) authentication.getPrincipal() ) );
     }
 }
