@@ -17,10 +17,13 @@ import java.time.ZoneOffset;
 @Service
 public class PW3TokenService {
 
+    @Value("${pw3.senha.principal.geracao.token}")
+    private String secret;
+
     public String gerarToken(Usuario usuario) {
 
         try {
-            var algoritmo = Algorithm.HMAC256("12345678");
+            var algoritmo = Algorithm.HMAC256(secret);
 
             String token = JWT.create()
                     .withIssuer("DISCIPLINA PW3")
@@ -40,7 +43,7 @@ public class PW3TokenService {
     public String getSubject(String tokenJWT) {
 
         try {
-            var algoritmo = Algorithm.HMAC256("12345678");
+            var algoritmo = Algorithm.HMAC256(secret);
             JWTVerifier jwtv = JWT.require(algoritmo)
                     .withIssuer("DISCIPLINA PW3")
                     .build();
