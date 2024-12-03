@@ -2,6 +2,7 @@ package br.edu.ifsp.prw3carlao.av3.Controller;
 
 import br.edu.ifsp.prw3carlao.av3.Usuario.Usuario;
 import br.edu.ifsp.prw3carlao.av3.Usuario.dadosAutenticacao;
+import br.edu.ifsp.prw3carlao.av3.Util.Security.DadosTokenJWT;
 import br.edu.ifsp.prw3carlao.av3.Util.Security.PW3TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ public class AutenticacaoController {
     public ResponseEntity efetuarLogin(@RequestBody @Valid dadosAutenticacao dados) {
         var token = new UsernamePasswordAuthenticationToken( dados.login(), dados.senha() );
         var authentication = manager.authenticate(token);
-        return ResponseEntity
-                .ok( tokenService.gerarToken( (Usuario) authentication.getPrincipal() ) );
+
+        var tokenJWT = tokenService.gerarToken( (Usuario) authentication.getPrincipal() );
+
+        return ResponseEntity.ok( new DadosTokenJWT(tokenJWT) );
     }
 }
